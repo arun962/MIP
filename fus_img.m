@@ -1,0 +1,17 @@
+a = imread("coloured 3D MRI.jpg");
+a = im2gray(a);
+b = imread("5.jpg");
+b = im2gray(b);
+[ca,ch,cv,cd] = dwt2(a,'db1');
+[ca1,ch1,cv1,cd1] = dwt2(b,'db1');
+CA = ca + ca1;
+CH = ch+ch1;
+CV = cv+cv1;
+CD = cd+cd1;
+fus_img = idwt2(CA,CH,CV,CD,'db1');
+subplot(131);
+imshow(a);title('Image1');
+subplot(132);
+imshow(b);title('Image2');
+subplot(133);
+imshow(fus_img,[]);title("fused image");
